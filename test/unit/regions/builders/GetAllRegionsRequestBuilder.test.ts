@@ -1,5 +1,5 @@
-import { AxiosRequestConfig, Method } from "axios";
-import { expect, assert } from "chai";
+import { expect } from "chai";
+import { AxiosRequestConfig } from "axios";
 import { IGetAllRegionsRequestBuilder } from "../../../../PokemonSelector/regions/interfaces/IGetAllRegionsRequestBuilder";
 import { GetAllRegionsRequestBuilder } from "../../../../PokemonSelector/regions/builders/GetAllRegionsRequestBuilder";
 
@@ -18,7 +18,7 @@ describe("GetAllRegionsRequestBuilder Unit Tests", () =>
         {
             test("It should return a valid instance", () =>
             {
-                expect(instance).to.be.an.instanceOf(GetAllRegionsRequestBuilder);
+                expect(instance).to.be.an.instanceOf(GetAllRegionsRequestBuilder)
             });
         });
     });
@@ -31,24 +31,17 @@ describe("GetAllRegionsRequestBuilder Unit Tests", () =>
 
             beforeEach(() =>
             {
-                try
-                {
-                    request = instance.build();
-                }
-                catch (ex)
-                {
-                    assert.fail(ex);
-                }
+                request = instance.build();
             });
 
             describe("The method should return", () =>
             {
-                test("A valid request config with a url set", () =>
+                it("Should return a valid request config with a url set", () =>
                 {
                     expect(request.url).to.equal("https://pokeapi.co/api/v2/region/");
                 });
 
-                test("A valid request config with the Http method set to GET", () =>
+                it("Should return a valid request config with the Http method set to GET", () =>
                 {
                     expect(request.method).to.equal("GET");
                 });

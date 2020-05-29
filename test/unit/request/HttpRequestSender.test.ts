@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect, assert } from "chai";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { It } from "../../../PokemonSelector/common/It";
 import { InvalidRequestException } from "../../../PokemonSelector/request/exceptions/InvalidRequestException";
@@ -16,7 +16,7 @@ describe("HttpRequestSender Unit Tests", () =>
     {
         describe("Given a new instance is created", () =>
         {
-            test("It should create a valid new instance", () =>
+            it("It should create a valid new instance", () =>
             {
                 expect(instance).to.be.an.instanceOf(HttpRequestSender);
             });
@@ -25,24 +25,21 @@ describe("HttpRequestSender Unit Tests", () =>
 
     describe("send()", () =>
     {
-        const invalidRequests= [null, undefined, {}];
+        const invalidRequests = [null, undefined, {}];
 
         invalidRequests.forEach((invalidRequest) =>
         {
             describe(`Given ${invalidRequest} is provided`, () =>
             {
-                test("It should throw an exception", async () =>
+                it("Should should throw an exception", async () =>
                 {
                     try
                     {
-                        await instance.send(invalidRequest);
-
-                        return;
+                        return await instance.send(invalidRequest);
                     }
                     catch (ex)
                     {
-                        expect(ex.name).to.equal("InvalidRequestException");
-                        expect(ex.message).to.equal("The request provided is invalid");
+                        expect(ex).to.equal("InvalidRequestException: The request provided is invalid");
                     }
                 });
             });
@@ -50,11 +47,21 @@ describe("HttpRequestSender Unit Tests", () =>
     });
 });
 
+/**
+ * @name IHttpRequestSender
+ *
+ * @description An interface that represents the available methods when using an insance of IHttpRequestSender
+ */
 export interface IHttpRequestSender
 {
     send<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>>;
 }
 
+/**
+ * @class HttpRequestSender
+ *
+ * @description A service to send HttpRequests to external services
+ */
 export class HttpRequestSender implements IHttpRequestSender
 {
     public async send<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>>

@@ -5,6 +5,7 @@
 
 # generated directory
 **/generated
+dist
 
 # output directory
 /out
