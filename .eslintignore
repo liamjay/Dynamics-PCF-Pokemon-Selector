@@ -1,0 +1,10 @@
+# Ignore files/directories for linting here
+*.json
+**/src/test/*.ts
+**/test/**/**/*.ts
+**/test/*.ts
+**/node_modules/*.*
+*.js
+!sigma-cpq-db-install-scripts/*
+sigma-cpq-app/plugins/*
+**/sigma-cpq-api-tests/**/**/**/*.ts

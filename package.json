@@ -6,7 +6,8 @@
     "build": "pcf-scripts build",
     "clean": "pcf-scripts clean",
     "rebuild": "pcf-scripts rebuild",
-    "start": "pcf-scripts start"
+    "start": "pcf-scripts start",
+    "test": "jest"
   },
   "dependencies": {
     "@fluentui/react": "^7.116.1",
@@ -17,13 +18,37 @@
     "jest": "^26.0.1",
     "office-ui-fabric-react": "^7.116.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "underscore": "^1.10.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/chai": "^4.2.11",
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.35",
+    "@types/sinon": "^9.0.4",
+    "@types/sinon-chai": "^3.2.4",
+    "@types/underscore": "^1.10.0",
+    "chai": "^4.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "pcf-scripts": "^1",
-    "pcf-start": "^1"
+    "pcf-start": "^1",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/test-shim.js",
+      "<rootDir>/test-setup.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/test-preprocessor.js"
+    }
   }
 }
