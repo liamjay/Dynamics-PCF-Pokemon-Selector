@@ -6,6 +6,8 @@
 # generated directory
 **/generated
 dist
+.nyc_output
+coverage
 
 # output directory
 /out

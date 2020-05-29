@@ -16,7 +16,7 @@ describe("GetAllRegionsRequestBuilder Unit Tests", () =>
     {
         describe("Given a new instance is created", () =>
         {
-            test("It should return a valid instance", () =>
+            it("It should return a valid instance", () =>
             {
                 expect(instance).to.be.an.instanceOf(GetAllRegionsRequestBuilder)
             });

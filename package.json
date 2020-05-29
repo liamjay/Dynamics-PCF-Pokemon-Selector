@@ -7,8 +7,7 @@
     "clean": "pcf-scripts clean",
     "rebuild": "pcf-scripts rebuild",
     "start": "pcf-scripts start",
-    "build:test": "tsc -p ./tsconfig.test.json",
-    "start:test": "build:test && mocha --colors ./test/**/*.js"
+    "test:unit": "gulp compile && gulp test:unit"
   },
   "dependencies": {
     "@fluentui/react": "^7.116.1",

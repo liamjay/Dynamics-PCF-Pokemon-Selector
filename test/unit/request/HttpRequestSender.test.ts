@@ -31,7 +31,9 @@ describe("HttpRequestSender Unit Tests", () =>
         {
             describe(`Given ${invalidRequest} is provided`, () =>
             {
-                it("Should should throw an exception", async () =>
+                let error: InvalidRequestException;
+
+                beforeEach(async () =>
                 {
                     try
                     {
@@ -39,8 +41,21 @@ describe("HttpRequestSender Unit Tests", () =>
                     }
                     catch (ex)
                     {
-                        expect(ex).to.equal("InvalidRequestException: The request provided is invalid");
+                        error = ex;
                     }
+                });
+
+                describe("The method", () =>
+                {
+                    it("Should throw an exception with the appropriate exception name", () =>
+                    {
+                        expect(error.name).to.equal("InvalidRequestException");
+                    });
+
+                    it("Should throw an exception with the appropriate message", () =>
+                    {
+                        expect(error.message).to.equal("The request provided is invalid");
+                    });
                 });
             });
         });
@@ -66,7 +81,7 @@ export class HttpRequestSender implements IHttpRequestSender
 {
     public async send<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>>
     {
-        if (It.isAnEmptyObject(request))
+        if (It.isNullOrUndefined(request) || It.isAnEmptyObject(request))
         {
             throw new InvalidRequestException("The request provided is invalid");
         }
