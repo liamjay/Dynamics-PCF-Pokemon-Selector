@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { It } from "../../../PokemonSelector/common/It";
 import { InvalidRequestException } from "../../../PokemonSelector/request/exceptions/InvalidRequestException";
 
@@ -31,24 +31,19 @@ describe("HttpRequestSender Unit Tests", () =>
         {
             describe(`Given ${invalidRequest} is provided`, () =>
             {
-                let actualError: InvalidRequestException;
-
-                beforeEach(() =>
+                test("It should throw an exception", async () =>
                 {
                     try
                     {
-                        instance.send(invalidRequest);
+                        await instance.send(invalidRequest);
+
+                        return;
                     }
                     catch (ex)
                     {
-                        actualError = ex;
+                        expect(ex.name).to.equal("InvalidRequestException");
+                        expect(ex.message).to.equal("The request provided is invalid");
                     }
-                });
-
-                test("It should throw an exception", () =>
-                {
-                    expect(actualError.name).to.equal("InvalidRequestException");
-                    expect(actualError.message).to.equal("The request provided is invalid");
                 });
             });
         });
@@ -57,18 +52,18 @@ describe("HttpRequestSender Unit Tests", () =>
 
 export interface IHttpRequestSender
 {
-    send(request: AxiosRequestConfig): any;
+    send<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>>;
 }
 
 export class HttpRequestSender implements IHttpRequestSender
 {
-    public send(request: AxiosRequestConfig)
+    public async send<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>>
     {
         if (It.isAnEmptyObject(request))
         {
             throw new InvalidRequestException("The request provided is invalid");
         }
 
-        return null;
+        return await axios(request);
     }
 }

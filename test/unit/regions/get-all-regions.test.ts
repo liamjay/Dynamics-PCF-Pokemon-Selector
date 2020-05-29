@@ -1,21 +1,22 @@
+import { expect } from "chai";
 import { Regions } from "../../../PokemonSelector/regions/types/Regions";
 
 describe("GetAllRegions Unit Test", () =>
 {
+    let instance: GetAllRegions;
+
+    beforeEach(() =>
+    {
+        instance = new GetAllRegions;
+    });
+
     describe("constructor()", () =>
     {
         describe("Given a new instance is created", () =>
         {
-            let instance: GetAllRegions;
-
-            beforeEach(() =>
-            {
-                instance = new GetAllRegions;
-            });
-
             test("It should return a valid instance", () =>
             {
-                expect(instance).toBeInstanceOf(GetAllRegions);
+                expect(instance).to.be.an.instanceOf(GetAllRegions);
             });
         });
     });
