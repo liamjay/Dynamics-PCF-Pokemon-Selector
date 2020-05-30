@@ -34,7 +34,7 @@ describe("GetAllRegionsRequestBuilder Unit Tests", () =>
                 request = instance.build();
             });
 
-            describe("The method should return", () =>
+            describe("The method", () =>
             {
                 it("Should return a valid request config with a url set", () =>
                 {

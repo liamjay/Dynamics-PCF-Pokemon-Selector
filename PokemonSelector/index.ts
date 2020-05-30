@@ -2,6 +2,10 @@ import * as React from "react";
 import * as ReactDom from "react-dom";
 import { MainComponent } from "./components/MainComponent";
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
+import { IGetAllRegions } from "./regions/interfaces/IGetAllRegions";
+import { GetAllRegionsFactory } from "./regions/factory/GetAllRegionsFactory";
+import { Region } from "./regions/types/Region";
+import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 
 export class PokemonSelector implements ComponentFramework.StandardControl<IInputs, IOutputs>
 {
@@ -23,7 +27,12 @@ export class PokemonSelector implements ComponentFramework.StandardControl<IInpu
     {
         this.container = container;
 
-        ReactDom.render(React.createElement(MainComponent), this.container);
+        initializeIcons();
+
+        const getAllRegions: IGetAllRegions = GetAllRegionsFactory.create();
+        return getAllRegions.get()
+            .then((regions: Region[]) => ReactDom.render(React.createElement(MainComponent, { regions: regions }), this.container))
+            .catch((ex) => console.error(ex));
     }
 
 
