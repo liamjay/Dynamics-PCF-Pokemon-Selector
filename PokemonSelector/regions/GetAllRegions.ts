@@ -1,7 +1,7 @@
 import { IGetAllRegions } from "./interfaces/IGetAllRegions";
 import { IGetAllRegionsRequestBuilder } from "./interfaces/IGetAllRegionsRequestBuilder";
 import { IHttpRequestSender } from "../request/interfaces/IHttpRequestSender";
-import { Region } from "./types/Region";
+import { RegionName } from "./types/RegionName";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { GetAllRegionsResponse } from "./types/GetAllRegionsResponse";
 
@@ -24,7 +24,7 @@ export class GetAllRegions implements IGetAllRegions
      *
      * @returns Region[]
      */
-    public async get(): Promise<Region[]>
+    public async get(): Promise<RegionName[]>
     {
         try
         {

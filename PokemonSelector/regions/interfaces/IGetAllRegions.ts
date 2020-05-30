@@ -1,4 +1,4 @@
-import { Region } from "../types/Region";
+import { RegionName } from "../types/RegionName";
 
 /**
  * @interface IGetAllRegions
@@ -14,5 +14,5 @@ export interface IGetAllRegions
      *
      * @returns Region[]
      */
-    get(): Promise<Region[]>;
+    get(): Promise<RegionName[]>;
 }

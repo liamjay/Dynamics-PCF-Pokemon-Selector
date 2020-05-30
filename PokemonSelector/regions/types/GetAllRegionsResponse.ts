@@ -1,5 +1,5 @@
-import { Region } from "./Region";
+import { RegionName } from "./RegionName";
 
 export type GetAllRegionsResponse = {
-    results: Region[];
+    results: RegionName[];
 };

@@ -6,7 +6,7 @@ import { GetAllRegionsRequestBuilder } from "../../../PokemonSelector/regions/bu
 import { IHttpRequestSender } from "../../../PokemonSelector/request/interfaces/IHttpRequestSender";
 import { HttpRequestSender } from "../../../PokemonSelector/request/HttpRequestSender";
 import { AxiosRequestConfig } from "axios";
-import { GetAllRegionsReponseMock } from "./mocks/GetAllRegionsMocks";
+import { GetAllRegionsReponseMock } from "./mocks/GetAllRegionsResponseMock";
 import { IGetAllRegions } from "../../../PokemonSelector/regions/interfaces/IGetAllRegions";
 import { GetAllRegions } from "../../../PokemonSelector/regions/GetAllRegions";
 
