@@ -30,6 +30,7 @@ export class PokemonSelector implements ComponentFramework.StandardControl<IInpu
         initializeIcons();
 
         const getAllRegions: IGetAllRegions = GetAllRegionsFactory.create();
+
         return getAllRegions.get()
             .then((regions: RegionName[]) => ReactDom.render(React.createElement(MainComponent, { regions: regions }), this.container))
             .catch((ex) => console.error(ex));

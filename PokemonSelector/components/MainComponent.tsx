@@ -26,6 +26,9 @@ export class MainComponent extends React.Component<MainProps, MainState>
         return (
             <div>
                 <div>
+                    <h1>Pokemon Selector</h1>
+                </div>
+                <div>
                     <RegionComponent regions={this.props.regions} onRegionChanged={this.onRegionChange.bind(this)} />
                 </div>
                 <div>
@@ -40,8 +43,6 @@ export class MainComponent extends React.Component<MainProps, MainState>
 
     private async onRegionChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number | undefined): Promise<void>
     {
-        console.log(JSON.stringify(option));
-
         const regionUrl: string = option?.key as string;
 
         const getRegionByUrl: IGetRegionByUrl = GetRegionByUrlFactory.create();
@@ -68,6 +69,22 @@ export class MainComponent extends React.Component<MainProps, MainState>
 
     private onPokemonChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number | undefined): void
     {
-        console.log("POKEMON: " + JSON.stringify(option));
+        const selectedPokemon: string = option?.text as string;
+
+        return this.copySelectedPokemon(selectedPokemon);
+    }
+
+    private copySelectedPokemon(pokemon: string): void
+    {
+        const dummyElement: HTMLTextAreaElement = document.createElement("textarea");
+
+        document.body.appendChild(dummyElement);
+        dummyElement.value = pokemon;
+        dummyElement.select();
+
+        document.execCommand("copy");
+        document.body.removeChild(dummyElement);
+
+        return;
     }
 }

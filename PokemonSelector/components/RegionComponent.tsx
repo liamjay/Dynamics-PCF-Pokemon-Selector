@@ -1,13 +1,13 @@
 import * as React from "react";
 import { RegionName } from "../regions/types/RegionName";
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { Dropdown, IDropdownOption } from "office-ui-fabric-react/lib/Dropdown";
 import { RegionProps } from "../regions/types/RegionProps";
 
 export class RegionComponent extends React.Component<RegionProps>
 {
     public constructor(props: RegionProps)
     {
-        super(props)
+        super(props);
     }
 
     public render()
